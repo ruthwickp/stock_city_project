@@ -1,5 +1,5 @@
-from django.conf.url import patterns, url
-from rango import views
+from django.conf.urls import patterns, url
+from stocks import views
 
 urlpatterns = patterns('',
 
