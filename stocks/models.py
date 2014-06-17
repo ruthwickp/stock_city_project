@@ -2,13 +2,11 @@ from django.db import models
 
 
 class Stock(models.Model):
-    """ Class describes a stock and contains many fields providing
+    """ Class describes a stock and contains fields providing
     information about it. """
-    symbol = models.CharField(max_length=10, unique=True)   
-    name = models.CharField(max_length=50, unique=True)
-    ask_realtime = models.FloatField()
-    todays_range = models.CharField(max_length=40)
-    volume = models.FloatField()
+    symbol = models.CharField(max_length=10)   
+    name = models.CharField(max_length=50)
+    historical_prices = models.TextField(max_length=None)
 
 
     def __unicode__(self):
