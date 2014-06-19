@@ -8,14 +8,17 @@
     <body>
     <!-- Check to see if the stock exists -->
     {% if stock %}
-        <h1>{{ stock_name }} -- {{ stock_symbol }}</h1>
+        <h1>{{ stock_name }} ({{ stock_symbol }})</h1>
         <ul>
             <li>Todays Range: {{ stock_todays_range }}</li>
             <li>Ask Realtime: {{ stock_ask_realtime }}</li>
             <li>Today Open: {{ stock_today_open }}</li>
             <li>Volume: {{ stock_volume }}</li>
-            <li>Change: {{ stock_change }}</li>
+            <li>Change: {{ stock_change }} ({{ stock_change_percent }})</li>
         </ul>
+        {% for day, day_info in historical_prices_dict.items %}
+        {{ day }} -- {{ day_info }}<br />
+        {% endfor %}
     {% else %}
         <strong>There is no stock with symbol {{ stock_symbol }}.</strong>
     {% endif %}

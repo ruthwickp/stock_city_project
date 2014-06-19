@@ -12,11 +12,10 @@ def populate():
 
     # Adds stock to database
     for stock in companies:
-
         print stock
         Stock.objects.get_or_create(
             symbol=stock,
-            name=ystockquote.get_company_name(stock),
+            name=ystockquote.get_company_name(stock)[1:-1],
             historical_prices=ystockquote.get_historical_prices(
                 stock, last_year, current_time))
 

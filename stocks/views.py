@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from stocks.models import Stock
 import ystockquote
+import collections
 
 def index(request):
     """ Home page displays list of all stocks. """
@@ -36,8 +37,24 @@ def stock_properties(stock):
     stock_dict['stock_today_open'] = ystockquote.get_today_open(stock.symbol)
     stock_dict['stock_volume'] = ystockquote.get_volume(stock.symbol)
     stock_dict['stock_change'] = ystockquote.get_change(stock.symbol)
-    stock_dict['stock_todays_range'] = ystockquote.get_todays_range(stock.symbol)
-    stock_dict['stock_historical_prices'] = sorted(stock.historical_prices)
+    stock_dict['stock_change_percent'] = ystockquote.get_change_percent(
+        stock.symbol)[1:-1]
+    stock_dict['stock_todays_range'] = ystockquote.get_todays_range(
+        stock.symbol)[1:-1]
+
+    # Gets past dates
+    stock_dict['historical_prices_dict'] = collections.OrderedDict(
+        sorted(eval(stock.historical_prices).items(), key=lambda t: t[0]))
+
     return stock_dict
+
+def past_days_info(historical_prices_dict):
+    """ Takes a dictionary and returns an ordered dictionary. """
+    collections.OrderedDict
+    for day in sorted(historical_prices_dict.keys())[::-1]:
+        past_days.append(day)
+        past_days_info.append(historical_prices_dict[day])
+    return past_days, past_days_info
+
 
 
