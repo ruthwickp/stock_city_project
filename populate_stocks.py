@@ -1,9 +1,14 @@
 import os
 import ystockquote
+import time
 
 def populate():
     """ Populates the database with the companies entered. """
     companies = get_companies_symbol()
+
+    # Gets current date and last year's dates
+    current_time = time.strftime('%Y-%m-%d')
+    last_year = str(int(time.strftime('%Y')) - 1) + time.strftime('-%m-%d')
 
     # Adds stock to database
     for stock in companies:
@@ -13,7 +18,7 @@ def populate():
             symbol=stock,
             name=ystockquote.get_company_name(stock),
             historical_prices=ystockquote.get_historical_prices(
-                stock, '2013-01-01', '2014-01-01'))
+                stock, last_year, current_time))
 
 def get_companies_symbol():
     """ Reads a file and returns the list of symbols of the companies

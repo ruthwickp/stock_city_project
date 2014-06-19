@@ -8,7 +8,7 @@
     <body>
         <ul>
             {% for stock in all_stocks %}
-            <li>{{ stock.name }} ({{ stock.symbol }})</li>
+            <li><a href="/stocks/{{ stock.symbol }}">{{ stock.name }} ({{ stock.symbol }})</a></li>
             {% endfor %}        
         </ul>
     </body>

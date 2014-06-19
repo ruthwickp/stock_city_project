@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Stock</title>
+    </head>
+
+    <body>
+    <!-- Check to see if the stock exists -->
+    {% if stock %}
+        <h1>{{ stock_name }} -- {{ stock_symbol }}</h1>
+        <ul>
+            <li>Todays Range: {{ stock_todays_range }}</li>
+            <li>Ask Realtime: {{ stock_ask_realtime }}</li>
+            <li>Today Open: {{ stock_today_open }}</li>
+            <li>Volume: {{ stock_volume }}</li>
+            <li>Change: {{ stock_change }}</li>
+        </ul>
+    {% else %}
+        <strong>There is no stock with symbol {{ stock_symbol }}.</strong>
+    {% endif %}
+    </body>
+</html>
