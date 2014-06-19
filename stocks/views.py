@@ -48,13 +48,5 @@ def stock_properties(stock):
 
     return stock_dict
 
-def past_days_info(historical_prices_dict):
-    """ Takes a dictionary and returns an ordered dictionary. """
-    collections.OrderedDict
-    for day in sorted(historical_prices_dict.keys())[::-1]:
-        past_days.append(day)
-        past_days_info.append(historical_prices_dict[day])
-    return past_days, past_days_info
-
 
 
